@@ -70,19 +70,7 @@ class Database {
 		}
 		else return false;
 	}
-	
-	private function updateArticle($table_name, $upd_fields, $where) {
-		$table_name = $this->config->db_prefix.$table_name;
-		$query = "UPDATE $table_name SET ";
-		foreach ($upd_fields as $field => $value) $query .= "`$field` = '".$value."',";
-		$query = substr($query, 0, -1);
-		if ($where) {
-			$query .= " WHERE $where";
-			return $this->query($query);
-		}
-		else return false;
-	}
-	
+
 	public function updateOnID($table_name, $id, $upd_fields){
 		return $this->updateArticle($table_name,$upd_fields,"`id`= $id"); 
 	} 
